@@ -75,8 +75,8 @@ const Body = animated(styled.div`
   top: 0px;
   left: 0px;
   background-color: ${backgroundColor};
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   opacity: 1;
   z-index: 10;
 `);
@@ -107,6 +107,7 @@ const Wrapper = styled.div`
   position: absolute;
   top: 114px;
   bottom: 42px;
+  width: 100%;
   overflow: scroll;
 `;
 export default WorkPage;
