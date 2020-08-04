@@ -28,7 +28,7 @@ const Overview: React.FC<Props> = ({ thumb, titleEN, titleJP, overview }) => {
 
 const Wrapper = styled.div`
   background-color: black;
-  width: ${iphoneWidth}px;
+  width: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
 `;
