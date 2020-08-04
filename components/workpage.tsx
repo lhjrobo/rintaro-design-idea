@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { iphoneWidth, iphoneHeight, backgroundColor } from "../assets/rules";
+import { backgroundColor } from "../assets/rules";
 import { useSpring, animated, interpolate } from "react-spring";
 import Comment from "./comment";
 import Overview from "./overview";
