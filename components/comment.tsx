@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { useSpring, animated, interpolate } from "react-spring";
-import { iphoneWidth, iphoneHeight } from "../assets/rules";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 const otherComments = ["a", "b", "c", "d", "erer", "a", "b", "c"];
