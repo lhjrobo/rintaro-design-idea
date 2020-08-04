@@ -75,8 +75,8 @@ const Body = animated(styled.div`
   top: 0px;
   left: 0px;
   background-color: ${backgroundColor};
-  width: ${iphoneWidth}px;
-  height: ${iphoneHeight}px;
+  width: 100vw;
+  height: 100vh;
   opacity: 1;
   z-index: 10;
 `);
