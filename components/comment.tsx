@@ -21,7 +21,7 @@ const Comment: React.FC<Props> = ({
   const [cursorOnTrig, setCursorOnTrig] = React.useState(false);
 
   const { x } = useSpring({ x: openTrig ? 0 : cursorOnTrig ? 230 : 250 });
-  const { s } = useSpring({ s: expandTrig ? iphoneHeight : 300 });
+  const { s } = useSpring({ s: expandTrig ? window.innerHeight : 300 });
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
@@ -84,7 +84,7 @@ const Comment: React.FC<Props> = ({
 };
 
 const CommentBox = animated(styled.div`
-  width: ${iphoneWidth}px;
+  width: 100%;
   height: 300px;
   background-color: #000000;
   right: 0px;
@@ -131,7 +131,7 @@ const CommentBoxOtherComment = styled.div`
   width: 230px;
 `;
 const CommentBoxFormWrapper = styled.div`
-  width: ${iphoneWidth}px;
+  width: 100%;
   height: 20px;
   display: flex;
   justify-content: space-between;
