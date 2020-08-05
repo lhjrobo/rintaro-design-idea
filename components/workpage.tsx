@@ -29,13 +29,14 @@ const WorkPage: React.FC<Props> = ({
   const [nextWork, setNextWork] = React.useState("Heejun");
   React.useEffect(() => {
     let i: number = authorlist.indexOf(author);
-    if (i < authorlist.length) {
+    if (authorlist.indexOf(author) < authorlist.length - 1) {
       i = i + 1;
     } else {
       i = 0;
     }
     setNextWork(authorlist[i]);
     console.log(nextWork);
+    console.log(authorlist[i]);
   }, [author]);
   const handleClickNext = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();

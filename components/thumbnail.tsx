@@ -33,13 +33,9 @@ const ThumbnailComponent: React.FC<Props> = ({
     } else {
       setScroll("scroll");
       setFocus("");
+      console.log("trigger1");
     }
   }, [open]);
-  React.useEffect(() => {
-    if (author !== selected) {
-      setFocus("");
-    }
-  }, [selected]);
   React.useEffect(() => {
     if (focus === author) {
       setOpacity(1);
@@ -81,6 +77,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   margin-bottom: 81px;
   position: relative;
+  pointer: cursor;
   z-index: 3;
 `;
 
