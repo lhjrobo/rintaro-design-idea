@@ -3,7 +3,9 @@ import styled from "@emotion/styled";
 import { useSpring, animated, interpolate } from "react-spring";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+const uuid = require("react-uuid");
 const otherComments = ["a", "b", "c", "d", "erer", "a", "b", "c"];
+
 interface Props {
   openState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
   expandState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
@@ -65,7 +67,11 @@ const Comment: React.FC<Props> = ({
       </CommentBoxTitle>
       <CommentBoxOtherComments onClick={(e) => e.stopPropagation()}>
         {otherComments.map((comment) => {
-          return <CommentBoxOtherComment>{comment}</CommentBoxOtherComment>;
+          return (
+            <CommentBoxOtherComment key={uuid()}>
+              {comment}
+            </CommentBoxOtherComment>
+          );
         })}
       </CommentBoxOtherComments>
       <CommentBoxFormWrapper onClick={(e) => e.stopPropagation()}>
@@ -102,7 +108,7 @@ const CommentBoxTitle = styled.div`
 `;
 
 const CommentBoxForm = styled.textarea`
-  width: 230px;
+  width: 90%;
   height: 20px;
   margin: 15px;
   border-radius: 20px;
@@ -127,7 +133,7 @@ const CommentBoxOtherComment = styled.div`
   padding: 20px;
   margin: 15px;
   height: 20px;
-  width: 230px;
+  width: auto;
 `;
 const CommentBoxFormWrapper = styled.div`
   width: 100%;

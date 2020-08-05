@@ -5,12 +5,28 @@ import globalCSS from "../styles/global";
 import { Global } from "@emotion/core";
 import thumbs from "../assets/thumbs";
 import ThumbnailComponent from "./thumbnail";
+import WorkPage from "./workpage";
 const logoWhite = require("../image/logo_white.png");
 
 const Mainpage = () => {
   const [scroll, setScroll] = React.useState("scroll");
-  const [selected, setSelected] = React.useState("");
-
+  const [selected, setSelected] = React.useState("Heejun");
+  const [open, setOpen] = React.useState(false);
+  const [focus, setFocus] = React.useState("");
+  const [shuffledWorklist, setShuffledWorklist] = React.useState(
+    Array.from(thumbs.keys())
+  );
+  React.useEffect(() => {
+    let arraybuffer: string[] = Array.from(thumbs.keys());
+    for (let i = arraybuffer.length - 1; i > 0; i--) {
+      let r = Math.floor(Math.random() * (i + 1));
+      let tmp = arraybuffer[i];
+      arraybuffer[i] = arraybuffer[r];
+      arraybuffer[r] = tmp;
+    }
+    setShuffledWorklist(arraybuffer);
+    setSelected(shuffledWorklist[0]);
+  }, []);
   return (
     <Wrapper style={{ overflow: scroll }}>
       <Body>
@@ -19,22 +35,25 @@ const Mainpage = () => {
           <TitleLogo>
             <LogoImg src={logoWhite} />
           </TitleLogo>
-          {thumbs.map((thumb) => {
+          {shuffledWorklist.map((index) => {
             return (
               <ThumbnailComponent
-                key={thumb.author}
-                author={thumb.author}
-                imgsrc={thumb.src}
-                titleEN={thumb.titleEN}
-                titleJP={thumb.titleJP}
+                key={index}
+                author={index}
                 scrollState={[scroll, setScroll]}
                 selectedState={[selected, setSelected]}
-                overview={thumb.overview}
-                contents={thumb.contents}
+                openState={[open, setOpen]}
+                focusState={[focus, setFocus]}
               />
             );
           })}
         </>
+        <WorkPage
+          openState={[open, setOpen]}
+          selectedState={[selected, setSelected]}
+          author={selected}
+          authorlist={shuffledWorklist}
+        />
       </Body>
     </Wrapper>
   );

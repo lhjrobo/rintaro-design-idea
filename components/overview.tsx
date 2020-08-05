@@ -13,17 +13,30 @@ interface Props {
   };
 }
 const Overview: React.FC<Props> = ({ thumb, titleEN, titleJP, overview }) => {
-  return (
-    <Wrapper>
-      <ThumbImg src={thumb} />
-      <Wrapper2>
-        <TitleJP>{titleJP}</TitleJP>
-        <TitleEN>-{titleEN}-</TitleEN>
-        <Caption>{overview.overViewCaptionJP}</Caption>
-        <Credit>{overview.overViewCreditJP}</Credit>
-      </Wrapper2>
-    </Wrapper>
-  );
+  if (titleJP === "") {
+    return (
+      <Wrapper>
+        <ThumbImg src={thumb} />
+        <Wrapper2>
+          <TitleEN>{titleEN}</TitleEN>
+          <Caption>{overview.overViewCaptionJP}</Caption>
+          <Credit>{overview.overViewCreditJP}</Credit>
+        </Wrapper2>
+      </Wrapper>
+    );
+  } else {
+    return (
+      <Wrapper>
+        <ThumbImg src={thumb} />
+        <Wrapper2>
+          <TitleJP>{titleJP}</TitleJP>
+          <TitleEN>-{titleEN}-</TitleEN>
+          <Caption>{overview.overViewCaptionJP}</Caption>
+          <Credit>{overview.overViewCreditJP}</Credit>
+        </Wrapper2>
+      </Wrapper>
+    );
+  }
 };
 
 const Wrapper = styled.div`
@@ -31,15 +44,18 @@ const Wrapper = styled.div`
   width: 100%;
   padding-top: 20px;
   padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ThumbImg = styled.img`
   width: ${iphoneWidth}px;
   height: ${iphoneWidth}px;
+  margin: 0 auto 0 auto;
 `;
 
 const Wrapper2 = styled.div`
-  margin: 20% 5% 5% 5%;
+  margin: 10% 5% 5% 5%;
   color: white;
 `;
 

@@ -1,45 +1,27 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { iphoneWidth } from "../assets/rules";
-import WorkPage from "./workpage";
+import thumbs from "../assets/thumbs";
 interface Props {
-  imgsrc: string;
-  titleJP: string;
-  titleEN: string;
   author: string;
   scrollState: [string, React.Dispatch<React.SetStateAction<string>>];
+  openState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  focusState: [string, React.Dispatch<React.SetStateAction<string>>];
   selectedState: [string, React.Dispatch<React.SetStateAction<string>>];
-  overview: {
-    overViewCaptionJP: string;
-    overViewCaptionEN: string;
-    overViewCreditJP: string;
-    overViewCreditEN: string;
-  };
-  contents: {
-    img: string[];
-    titleJP: string;
-    titleEN: string;
-    MessageJP: string;
-    MessageEN: string;
-  }[];
 }
 
 const ThumbnailComponent: React.FC<Props> = ({
-  imgsrc,
   author,
-  titleEN,
-  titleJP,
-  scrollState: [scroll, setScroll],
+  openState: [open, setOpen],
+  focusState: [focus, setFocus],
+  scrollState: [, setScroll],
   selectedState: [selected, setSelected],
-  overview,
-  contents,
 }) => {
-  const [focus, setFocus] = React.useState(0);
-  const [open, setOpen] = React.useState(false);
+  const [opacity, setOpacity] = React.useState(0);
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    if (focus === 0) {
-      setFocus(1);
+    if (focus !== author) {
+      setFocus(author);
       setSelected(author);
     } else {
       setOpen(true);
@@ -48,40 +30,35 @@ const ThumbnailComponent: React.FC<Props> = ({
   React.useEffect(() => {
     if (open === true) {
       setScroll("hidden");
-      console.log(scroll);
     } else {
       setScroll("scroll");
-      setFocus(0);
-      console.log(scroll);
+      setFocus("");
     }
   }, [open]);
   React.useEffect(() => {
     if (author !== selected) {
-      setFocus(0);
+      setFocus("");
     }
   }, [selected]);
+  React.useEffect(() => {
+    if (focus === author) {
+      setOpacity(1);
+    } else {
+      setOpacity(0);
+    }
+  }, [focus]);
   return (
-    <>
-      <Wrapper onClick={handleClick}>
-        <ThumbBlur src={imgsrc} style={{ opacity: focus }} />
-        <TitleWrapper style={{ opacity: focus }}>
-          <Title>
-            <div>{titleJP}</div>
-            <div>{titleEN}</div>
-          </Title>
-        </TitleWrapper>
-        <Thumb src={imgsrc} />
-        <SmokeGlass style={{ opacity: focus * 0.5 }} />
-      </Wrapper>
-      <WorkPage
-        openState={[open, setOpen]}
-        thumb={imgsrc}
-        titleEN={titleEN}
-        titleJP={titleJP}
-        overview={overview}
-        contents={contents}
-      />
-    </>
+    <Wrapper onClick={handleClick}>
+      <ThumbBlur src={thumbs.get(author).src} style={{ opacity: opacity }} />
+      <TitleWrapper style={{ opacity: opacity }}>
+        <Title>
+          <div>{thumbs.get(author).titleJP}</div>
+          <div>{thumbs.get(author).titleEN}</div>
+        </Title>
+      </TitleWrapper>
+      <Thumb src={thumbs.get(author).src} />
+      <SmokeGlass style={{ opacity: opacity * 0.5 }} />
+    </Wrapper>
   );
 };
 

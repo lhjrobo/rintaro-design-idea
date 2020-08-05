@@ -68,7 +68,7 @@ const HeejunAsset = [
     MessageEN: workCaptionMessage1EN,
   },
   {
-    img: [""],
+    img: [],
     titleJP: workCaptionTitle2JP,
     titleEN: workCaptionTitle2EN,
     MessageJP: workCaptionMessage2JP,
