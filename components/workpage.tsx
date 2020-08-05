@@ -68,7 +68,7 @@ const WorkPage: React.FC<Props> = ({
         <ExitButton onClick={handleClose}>×</ExitButton>
       </ToolBar>
       <Wrapper id={"Wrapper"}>
-        <>
+        <Wrapper2>
           <Overview
             overview={thumbs.get(author).overview}
             thumb={thumbs.get(author).src}
@@ -94,7 +94,7 @@ const WorkPage: React.FC<Props> = ({
               <NextWorkImage src={thumbs.get(nextWork).src} />
             </NextWorkImgWrapper>
           </NextWorkWrapper>
-        </>
+        </Wrapper2>
       </Wrapper>
 
       <Comment
@@ -147,6 +147,9 @@ const Wrapper = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+`;
+const Wrapper2 = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
