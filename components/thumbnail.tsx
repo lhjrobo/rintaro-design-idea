@@ -29,7 +29,7 @@ const ThumbnailComponent: React.FC<Props> = ({
   author,
   titleEN,
   titleJP,
-  scrollState: [scroll, setScroll],
+  //scrollState: [scroll, setScroll],
   selectedState: [selected, setSelected],
   overview,
   contents,
@@ -46,14 +46,14 @@ const ThumbnailComponent: React.FC<Props> = ({
     }
     console.log(scroll);
   };
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     if (open === true) {
       setScroll("hidden");
     } else {
       setScroll("visible");
       setFocus(0);
     }
-  }, [open]);
+  }, [open]);*/
   React.useEffect(() => {
     if (author !== selected) {
       setFocus(0);
