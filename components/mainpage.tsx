@@ -10,14 +10,36 @@ const logoWhite = require("../image/logo_white.png");
 const Mainpage = () => {
   const [scroll, setScroll] = React.useState(true);
   const [selected, setSelected] = React.useState("");
+
   const handleScroll = (e: React.MouseEvent<HTMLDivElement>) => {
     if (scroll === false) {
       e.preventDefault();
     }
   };
+  const handleWheel = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (scroll === false) {
+      e.preventDefault();
+    }
+  };
+  const handleTouch = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (scroll === false) {
+      e.preventDefault();
+    }
+  };
+  const handleKeyScroll = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (scroll === false) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <Wrapper>
-      <Body onScroll={handleScroll}>
+      <Body
+        onScroll={handleScroll}
+        onWheel={handleWheel}
+        onTouchMove={handleTouch}
+        onKeyDown={handleKeyScroll}
+      >
         <Global styles={globalCSS} />
         <>
           <TitleLogo>
