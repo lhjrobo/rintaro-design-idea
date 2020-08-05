@@ -87,6 +87,9 @@ const Wrapper = styled.div`
 const Background = styled.div`
   z-index: -2;
   height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
   width: 100%;
   ::-webkit-scrollbar {
     display: none;
