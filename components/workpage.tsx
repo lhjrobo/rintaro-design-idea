@@ -45,6 +45,12 @@ const WorkPage: React.FC<Props> = ({
       target.scrollTo(0, 0);
     }
   };
+  React.useEffect(() => {
+    const target = document.getElementById("Wrapper");
+    if (target !== null) {
+      target.scrollTo(0, 0);
+    }
+  }, [open]);
   return (
     <Body
       style={{
@@ -136,6 +142,9 @@ const Wrapper = styled.div`
   bottom: 42px;
   width: 100%;
   overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;

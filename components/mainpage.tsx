@@ -28,34 +28,36 @@ const Mainpage = () => {
     setSelected(shuffledWorklist[0]);
   }, []);
   return (
-    <Wrapper>
-      <Body style={{ overflow: scroll }}>
-        <Global styles={globalCSS} />
-        <>
-          <TitleLogo>
-            <LogoImg src={logoWhite} />
-          </TitleLogo>
-          {shuffledWorklist.map((index) => {
-            return (
-              <ThumbnailComponent
-                key={index}
-                author={index}
-                scrollState={[scroll, setScroll]}
-                selectedState={[selected, setSelected]}
-                openState={[open, setOpen]}
-                focusState={[focus, setFocus]}
-              />
-            );
-          })}
-        </>
-        <WorkPage
-          openState={[open, setOpen]}
-          selectedState={[selected, setSelected]}
-          author={selected}
-          authorlist={shuffledWorklist}
-        />
-      </Body>
-    </Wrapper>
+    <Background style={{ overflow: scroll }}>
+      <Wrapper>
+        <Body>
+          <Global styles={globalCSS} />
+          <>
+            <TitleLogo>
+              <LogoImg src={logoWhite} />
+            </TitleLogo>
+            {shuffledWorklist.map((index) => {
+              return (
+                <ThumbnailComponent
+                  key={index}
+                  author={index}
+                  scrollState={[scroll, setScroll]}
+                  selectedState={[selected, setSelected]}
+                  openState={[open, setOpen]}
+                  focusState={[focus, setFocus]}
+                />
+              );
+            })}
+          </>
+          <WorkPage
+            openState={[open, setOpen]}
+            selectedState={[selected, setSelected]}
+            author={selected}
+            authorlist={shuffledWorklist}
+          />
+        </Body>
+      </Wrapper>
+    </Background>
   );
 };
 
@@ -74,18 +76,21 @@ const Body = styled.div`
   z-index: 0;
   height: 100%;
   width: ${iphoneWidth}px;
-  ::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const Wrapper = styled.div`
   background-color: ${backgroundColor};
   z-index: -1;
-  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
 `;
-
+const Background = styled.div`
+  z-index: -2;
+  height: 100vh;
+  width: 100%;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
 export default Mainpage;
