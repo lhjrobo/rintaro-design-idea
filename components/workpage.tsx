@@ -103,7 +103,6 @@ const Body = animated(styled.div`
   left: 0px;
   background-color: ${backgroundColor};
   width: 100%;
-  height: 100%;
   opacity: 1;
   z-index: 10;
 `);
