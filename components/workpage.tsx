@@ -68,31 +68,33 @@ const WorkPage: React.FC<Props> = ({
         <ExitButton onClick={handleClose}>×</ExitButton>
       </ToolBar>
       <Wrapper id={"Wrapper"}>
-        <Overview
-          overview={thumbs.get(author).overview}
-          thumb={thumbs.get(author).src}
-          titleEN={thumbs.get(author).titleEN}
-          titleJP={thumbs.get(author).titleJP}
-        />
-        {thumbs
-          .get(author)
-          .contents.map(
-            (content: {
-              img: string[];
-              titleJP: string;
-              titleEN: string;
-              MessageJP: string;
-              MessageEN: string;
-            }) => {
-              return <ContentCard key={content.titleJP} content={content} />;
-            }
-          )}
-        <NextWorkWrapper onClick={handleClickNext}>
-          <NextWorkText>Next</NextWorkText>
-          <NextWorkImgWrapper>
-            <NextWorkImage src={thumbs.get(nextWork).src} />
-          </NextWorkImgWrapper>
-        </NextWorkWrapper>
+        <>
+          <Overview
+            overview={thumbs.get(author).overview}
+            thumb={thumbs.get(author).src}
+            titleEN={thumbs.get(author).titleEN}
+            titleJP={thumbs.get(author).titleJP}
+          />
+          {thumbs
+            .get(author)
+            .contents.map(
+              (content: {
+                img: string[];
+                titleJP: string;
+                titleEN: string;
+                MessageJP: string;
+                MessageEN: string;
+              }) => {
+                return <ContentCard key={content.titleJP} content={content} />;
+              }
+            )}
+          <NextWorkWrapper onClick={handleClickNext}>
+            <NextWorkText>Next</NextWorkText>
+            <NextWorkImgWrapper>
+              <NextWorkImage src={thumbs.get(nextWork).src} />
+            </NextWorkImgWrapper>
+          </NextWorkWrapper>
+        </>
       </Wrapper>
 
       <Comment
@@ -137,7 +139,7 @@ const ExitButton = styled.div`
   line-height: 3rem;
 `;
 const Wrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 114px;
   bottom: 42px;
   width: 100%;
