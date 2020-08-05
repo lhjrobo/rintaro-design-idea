@@ -15,7 +15,7 @@ const ThumbnailComponent: React.FC<Props> = ({
   openState: [open, setOpen],
   focusState: [focus, setFocus],
   scrollState: [, setScroll],
-  selectedState: [selected, setSelected],
+  selectedState: [, setSelected],
 }) => {
   const [opacity, setOpacity] = React.useState(0);
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
