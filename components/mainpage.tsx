@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { iphoneHeight, iphoneWidth, backgroundColor } from "../assets/rules";
+import { iphoneWidth, backgroundColor } from "../assets/rules";
 import globalCSS from "../styles/global";
 import { Global } from "@emotion/core";
 import thumbs from "../assets/thumbs";
@@ -8,38 +8,12 @@ import ThumbnailComponent from "./thumbnail";
 const logoWhite = require("../image/logo_white.png");
 
 const Mainpage = () => {
-  const [scroll, setScroll] = React.useState(true);
+  const [scroll, setScroll] = React.useState("scroll");
   const [selected, setSelected] = React.useState("");
 
-  const handleScroll = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (scroll === false) {
-      e.preventDefault();
-    }
-  };
-  const handleWheel = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (scroll === false) {
-      e.preventDefault();
-    }
-  };
-  const handleTouch = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (scroll === false) {
-      e.preventDefault();
-    }
-  };
-  const handleKeyScroll = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (scroll === false) {
-      e.preventDefault();
-    }
-  };
-
   return (
-    <Wrapper>
-      <Body
-        onScroll={handleScroll}
-        onWheel={handleWheel}
-        onTouchMove={handleTouch}
-        onKeyDown={handleKeyScroll}
-      >
+    <Wrapper style={{ overflow: scroll }}>
+      <Body>
         <Global styles={globalCSS} />
         <>
           <TitleLogo>
@@ -79,14 +53,14 @@ const LogoImg = styled.img`
 const Body = styled.div`
   background-color: ${backgroundColor};
   z-index: 0;
-  height: ${iphoneHeight}px;
+  height: 100%;
   width: ${iphoneWidth}px;
 `;
 
 const Wrapper = styled.div`
   background-color: ${backgroundColor};
   z-index: -1;
-  height: ${iphoneHeight}px;
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
