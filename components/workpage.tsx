@@ -157,7 +157,6 @@ const Wrapper2 = styled.div`
 
 const NextWorkWrapper = styled.div`
   width: ${iphoneWidth * 0.7}px;
-  height: 200px;
   background-color: black;
   margin-top: 200px;
 `;
@@ -174,7 +173,7 @@ const NextWorkImage = styled.img`
 `;
 const NextWorkImgWrapper = styled.div`
   width: ${iphoneWidth * 0.7}px;
-  height: ${iphoneWidth * 0.7 - 200}px;
+  height: ${iphoneWidth * 0.7 - 100}px;
   overflow: hidden;
 `;
 export default WorkPage;
