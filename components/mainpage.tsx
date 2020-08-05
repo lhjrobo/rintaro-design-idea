@@ -8,11 +8,16 @@ import ThumbnailComponent from "./thumbnail";
 const logoWhite = require("../image/logo_white.png");
 
 const Mainpage = () => {
-  const [scroll, setScroll] = React.useState("visible");
+  const [scroll, setScroll] = React.useState(true);
   const [selected, setSelected] = React.useState("");
+  const handleScroll = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (scroll === false) {
+      e.preventDefault();
+    }
+  };
   return (
     <Wrapper>
-      <Body style={{ overflow: `${scroll}` }}>
+      <Body onScroll={handleScroll}>
         <Global styles={globalCSS} />
         <>
           <TitleLogo>

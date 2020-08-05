@@ -7,7 +7,7 @@ interface Props {
   titleJP: string;
   titleEN: string;
   author: string;
-  scrollState: [string, React.Dispatch<React.SetStateAction<string>>];
+  scrollState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
   selectedState: [string, React.Dispatch<React.SetStateAction<string>>];
   overview: {
     overViewCaptionJP: string;
@@ -29,7 +29,7 @@ const ThumbnailComponent: React.FC<Props> = ({
   author,
   titleEN,
   titleJP,
-  //scrollState: [scroll, setScroll],
+  scrollState: [scroll, setScroll],
   selectedState: [selected, setSelected],
   overview,
   contents,
@@ -46,14 +46,14 @@ const ThumbnailComponent: React.FC<Props> = ({
     }
     console.log(scroll);
   };
-  /*React.useEffect(() => {
+  React.useEffect(() => {
     if (open === true) {
-      setScroll("hidden");
+      setScroll(false);
     } else {
-      setScroll("visible");
+      setScroll(true);
       setFocus(0);
     }
-  }, [open]);*/
+  }, [open]);
   React.useEffect(() => {
     if (author !== selected) {
       setFocus(0);
