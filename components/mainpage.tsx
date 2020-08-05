@@ -74,7 +74,6 @@ const LogoImg = styled.img`
 const Body = styled.div`
   background-color: ${backgroundColor};
   z-index: 0;
-  height: 100%;
   width: ${iphoneWidth}px;
 `;
 
