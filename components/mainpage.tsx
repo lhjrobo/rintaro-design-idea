@@ -28,8 +28,8 @@ const Mainpage = () => {
     setSelected(shuffledWorklist[0]);
   }, []);
   return (
-    <Wrapper style={{ overflow: scroll }}>
-      <Body>
+    <Wrapper>
+      <Body style={{ overflow: scroll }}>
         <Global styles={globalCSS} />
         <>
           <TitleLogo>
@@ -72,8 +72,11 @@ const LogoImg = styled.img`
 const Body = styled.div`
   background-color: ${backgroundColor};
   z-index: 0;
-
+  height: 100%;
   width: ${iphoneWidth}px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Wrapper = styled.div`
