@@ -109,20 +109,19 @@ const CommentBox = animated(styled.div`
 
 const CommentBoxTitle = styled.div`
   font-weight: bold;
-  margin: 15px;
   text-align: center;
-  height: 15px;
+  line-height: 60px;
   grid-row: 1 / 2;
 `;
 
 const CommentBoxForm = styled.textarea`
-  height: 10px;
-  line-height: 10px;
+  height: 40px;
+  line-height: 40px;
   margin: 15px;
   border-radius: 20px;
   border: 0px;
   background-color: #ffffff;
-  padding: 15px;
+  padding: 0px 15px 0px 15px;
   resize: none;
   font-size: 16px;
   outline: none;
@@ -141,14 +140,13 @@ const CommentBoxOtherComment = styled.div`
   color: black;
   border-radius: 20px;
   margin: 15px;
-  height: 10px;
-  line-height: 10px;
-  padding: 15px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 15px 0px 15px;
   width: auto;
 `;
 const CommentBoxFormWrapper = styled.div`
   width: 100%;
-  height: 20px;
   display: grid;
   justify-content: space-between;
   border-top: 1px solid white;
