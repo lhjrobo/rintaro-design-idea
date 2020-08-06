@@ -30,7 +30,6 @@ const Comment: React.FC<Props> = ({
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
     setCommentContent(e.target.value);
-    console.log(commentContent);
   };
   const handleContentFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     e.stopPropagation();

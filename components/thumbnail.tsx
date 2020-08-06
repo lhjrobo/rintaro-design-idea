@@ -33,7 +33,6 @@ const ThumbnailComponent: React.FC<Props> = ({
     } else {
       setScroll("scroll");
       setFocus("");
-      console.log("trigger1");
     }
   }, [open]);
   React.useEffect(() => {

@@ -20,27 +20,16 @@ const WorkPage: React.FC<Props> = ({
   openState: [open, setOpen],
   selectedState: [, setSelected],
 }) => {
-  const { s } = useSpring({ s: open ? 1 : 0, config: { tension: 350 } });
-  const handleClose = () => {
-    setOpen(false);
-  };
   const [openTrig, setOpenTrig] = React.useState(false);
   const [expandTrig, setExpandTrig] = React.useState(false);
   const [formFocusTrig, setFormFocusTrig] = React.useState(false);
-  const [toolBarOpacity, setToolBarOpacity] = React.useState(1);
-  const [mainPageHeight, setMainPageHeight] = React.useState(114);
+  const [toolBarHideTrig, setToolBarHideTrig] = React.useState(false);
+  const [scrollPos, setScrollPos] = React.useState(0);
+  const [previousScrollPos, setPreviousScrollPos] = React.useState(0);
   const [nextWork, setNextWork] = React.useState("Heejun");
-  React.useEffect(() => {
-    let i: number = authorlist.indexOf(author);
-    if (authorlist.indexOf(author) < authorlist.length - 1) {
-      i = i + 1;
-    } else {
-      i = 0;
-    }
-    setNextWork(authorlist[i]);
-    console.log(nextWork);
-    console.log(authorlist[i]);
-  }, [author]);
+  const { s } = useSpring({ s: open ? 1 : 0, config: { tension: 350 } });
+  const { h } = useSpring({ h: toolBarHideTrig ? 114 : 0 });
+
   const handleClickNext = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     setSelected(nextWork);
@@ -49,6 +38,32 @@ const WorkPage: React.FC<Props> = ({
       target.scrollTo(0, 0);
     }
   };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleScroll = () => {
+    const target = document.getElementById("Wrapper");
+    if (target !== null) {
+      setScrollPos(target.scrollTop);
+      if (scrollPos > previousScrollPos) {
+        setToolBarHideTrig(true);
+      } else {
+        setToolBarHideTrig(false);
+      }
+      setPreviousScrollPos(scrollPos);
+    }
+  };
+
+  React.useEffect(() => {
+    let i: number = authorlist.indexOf(author);
+    if (authorlist.indexOf(author) < authorlist.length - 1) {
+      i = i + 1;
+    } else {
+      i = 0;
+    }
+    setNextWork(authorlist[i]);
+  }, [author]);
+
   React.useEffect(() => {
     const target = document.getElementById("Wrapper");
     if (target !== null) {
@@ -57,13 +72,12 @@ const WorkPage: React.FC<Props> = ({
   }, [open]);
   React.useEffect(() => {
     if (formFocusTrig === true) {
-      setToolBarOpacity(0);
-      setMainPageHeight(0);
+      setToolBarHideTrig(true);
     } else {
-      setToolBarOpacity(1);
-      setMainPageHeight(114);
+      setToolBarHideTrig(false);
     }
   }, [formFocusTrig]);
+
   return (
     <Body
       style={{
@@ -76,11 +90,17 @@ const WorkPage: React.FC<Props> = ({
         }
       }}
     >
-      <ToolBar style={{ opacity: toolBarOpacity }}>
+      <ToolBar
+        style={{ transform: interpolate([h], (h) => `translate3d(0,${h},0)`) }}
+      >
         <LogoImg src={logoWhite} />
         <ExitButton onClick={handleClose}>×</ExitButton>
       </ToolBar>
-      <Wrapper id={"Wrapper"} style={{ top: mainPageHeight }}>
+      <Wrapper
+        id={"Wrapper"}
+        style={{ top: interpolate([h], (h) => `${114 - h}px`) }}
+        onScroll={handleScroll}
+      >
         <Wrapper2>
           <Overview
             overview={thumbs.get(author).overview}
@@ -129,7 +149,7 @@ const Body = animated(styled.div`
   opacity: 1;
   z-index: 10;
 `);
-const ToolBar = styled.div`
+const ToolBar = animated(styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
@@ -140,7 +160,7 @@ const ToolBar = styled.div`
   justify-content: space-between;
   margin-bottom: 51px;
   background-color: #000000;
-`;
+`);
 const LogoImg = styled.img`
   height: 90px;
   margin-left: 12px;
@@ -152,7 +172,7 @@ const ExitButton = styled.div`
   text-align: center;
   line-height: 3rem;
 `;
-const Wrapper = styled.div`
+const Wrapper = animated(styled.div`
   position: fixed;
   bottom: 42px;
   width: 100%;
@@ -160,7 +180,7 @@ const Wrapper = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
-`;
+`);
 const Wrapper2 = styled.div`
   width: 100%;
   display: flex;
