@@ -33,6 +33,7 @@ const Comment: React.FC<Props> = ({
   };
   const handleContentFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     e.stopPropagation();
+    e.preventDefault();
     if (focusTrig === false) {
       setFocusTrig(true);
       setCommentContent("");
@@ -123,7 +124,7 @@ const CommentBoxForm = styled.textarea`
   background-color: #ffffff;
   padding: 15px;
   resize: none;
-  font-size: 1rem;
+  font-size: 16px;
   outline: none;
   grid-column: 1/ 2;
 `;
