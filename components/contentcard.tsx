@@ -12,6 +12,16 @@ interface Props {
 }
 
 const ContentCard: React.FC<Props> = ({ content }) => {
+  const [thumbWidth, setThumbWidth] = React.useState(iphoneWidth);
+  React.useEffect(() => {
+    if (window !== undefined) {
+      if (iphoneWidth >= window.innerWidth) {
+        setThumbWidth(window.innerWidth);
+      } else {
+        setThumbWidth(iphoneWidth);
+      }
+    }
+  }, []);
   if (content.img.length === 0) {
     if (content.titleJP === "") {
       return (
@@ -38,7 +48,16 @@ const ContentCard: React.FC<Props> = ({ content }) => {
       return (
         <Wrapper>
           {content.img.map((singleimg) => {
-            return <ContentImg key={singleimg} src={singleimg} />;
+            return (
+              <ContentImg
+                key={singleimg}
+                src={singleimg}
+                style={{
+                  width: `${thumbWidth}px`,
+                  height: `${(thumbWidth * 2) / 3}px`,
+                }}
+              />
+            );
           })}
           <Wrapper2>
             <TitleEN>{content.titleEN}</TitleEN>
@@ -50,7 +69,16 @@ const ContentCard: React.FC<Props> = ({ content }) => {
       return (
         <Wrapper>
           {content.img.map((singleimg) => {
-            return <ContentImg key={singleimg} src={singleimg} />;
+            return (
+              <ContentImg
+                key={singleimg}
+                src={singleimg}
+                style={{
+                  width: `${thumbWidth}px`,
+                  height: `${(thumbWidth * 2) / 3}px`,
+                }}
+              />
+            );
           })}
           <Wrapper2>
             <TitleJP>{content.titleJP}</TitleJP>

@@ -18,6 +18,7 @@ const ThumbnailComponent: React.FC<Props> = ({
   selectedState: [, setSelected],
 }) => {
   const [opacity, setOpacity] = React.useState(0);
+  const [thumbWidth, setThumbWidth] = React.useState(iphoneWidth);
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     if (focus !== author) {
@@ -42,17 +43,54 @@ const ThumbnailComponent: React.FC<Props> = ({
       setOpacity(0);
     }
   }, [focus]);
+  React.useEffect(() => {
+    if (window !== undefined) {
+      if (iphoneWidth >= window.innerWidth) {
+        setThumbWidth(window.innerWidth);
+      } else {
+        setThumbWidth(iphoneWidth);
+      }
+    }
+  }, []);
   return (
-    <Wrapper onClick={handleClick}>
-      <ThumbBlur src={thumbs.get(author).src} style={{ opacity: opacity }} />
-      <TitleWrapper style={{ opacity: opacity }}>
+    <Wrapper
+      onClick={handleClick}
+      style={{ width: `${thumbWidth}px`, height: `${thumbWidth}px` }}
+    >
+      <ThumbBlur
+        src={thumbs.get(author).src}
+        style={{
+          opacity: opacity,
+          width: `${thumbWidth}px`,
+          height: `${thumbWidth}px`,
+        }}
+      />
+      <TitleWrapper
+        style={{
+          opacity: opacity,
+          width: `${thumbWidth}px`,
+          height: `${thumbWidth}px`,
+        }}
+      >
         <Title>
           <div>{thumbs.get(author).titleJP}</div>
           <div>{thumbs.get(author).titleEN}</div>
         </Title>
       </TitleWrapper>
-      <Thumb src={thumbs.get(author).src} />
-      <SmokeGlass style={{ opacity: opacity * 0.5 }} />
+      <Thumb
+        src={thumbs.get(author).src}
+        style={{
+          width: `${thumbWidth}px`,
+          height: `${thumbWidth}px`,
+        }}
+      />
+      <SmokeGlass
+        style={{
+          opacity: opacity * 0.5,
+          width: `${thumbWidth}px`,
+          height: `${thumbWidth}px`,
+        }}
+      />
     </Wrapper>
   );
 };
@@ -86,12 +124,11 @@ const TitleWrapper = styled.div`
   position: absolute;
   z-index: 5;
   display: flex;
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: white;
-  align-items: center;
 `;
 const Title = styled.div`
-  margin-left: 10%;
+  margin: auto 10% auto 10%;
 `;
 const SmokeGlass = styled.div`
   width: ${iphoneWidth}px;

@@ -13,10 +13,23 @@ interface Props {
   };
 }
 const Overview: React.FC<Props> = ({ thumb, titleEN, titleJP, overview }) => {
+  const [thumbWidth, setThumbWidth] = React.useState(iphoneWidth);
+  React.useEffect(() => {
+    if (window !== undefined) {
+      if (iphoneWidth >= window.innerWidth) {
+        setThumbWidth(window.innerWidth);
+      } else {
+        setThumbWidth(iphoneWidth);
+      }
+    }
+  }, []);
   if (titleJP === "") {
     return (
       <Wrapper>
-        <ThumbImg src={thumb} />
+        <ThumbImg
+          src={thumb}
+          style={{ width: `${thumbWidth}px`, height: `${thumbWidth}px` }}
+        />
         <Wrapper2>
           <TitleEN>{titleEN}</TitleEN>
           <Caption>{overview.overViewCaptionJP}</Caption>
@@ -27,7 +40,10 @@ const Overview: React.FC<Props> = ({ thumb, titleEN, titleJP, overview }) => {
   } else {
     return (
       <Wrapper>
-        <ThumbImg src={thumb} />
+        <ThumbImg
+          src={thumb}
+          style={{ width: `${thumbWidth}px`, height: `${thumbWidth}px` }}
+        />
         <Wrapper2>
           <TitleJP>{titleJP}</TitleJP>
           <TitleEN>-{titleEN}-</TitleEN>
