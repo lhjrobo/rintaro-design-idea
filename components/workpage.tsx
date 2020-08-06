@@ -91,7 +91,10 @@ const WorkPage: React.FC<Props> = ({
       }}
     >
       <ToolBar
-        style={{ transform: interpolate([h], (h) => `translate3d(0,${h},0)`) }}
+        style={{
+          transform: interpolate([h], (h) => `translate3d(0,${h},0)`),
+          opacity: interpolate([h], (h) => `${1 - h / 114}`),
+        }}
       >
         <LogoImg src={logoWhite} />
         <ExitButton onClick={handleClose}>×</ExitButton>
