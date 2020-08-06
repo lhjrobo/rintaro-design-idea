@@ -99,11 +99,7 @@ const WorkPage: React.FC<Props> = ({
         <LogoImg src={logoWhite} />
         <ExitButton onClick={handleClose}>×</ExitButton>
       </ToolBar>
-      <Wrapper
-        id={"Wrapper"}
-        style={{ top: interpolate([h], (h) => `${114 - h}px`) }}
-        onScroll={handleScroll}
-      >
+      <Wrapper id={"Wrapper"} onScroll={handleScroll}>
         <Wrapper2>
           <Overview
             overview={thumbs.get(author).overview}
@@ -163,6 +159,7 @@ const ToolBar = animated(styled.div`
   justify-content: space-between;
   margin-bottom: 51px;
   background-color: #000000;
+  z-index: 20;
 `);
 const LogoImg = styled.img`
   height: 90px;
@@ -178,6 +175,7 @@ const ExitButton = styled.div`
 const Wrapper = animated(styled.div`
   position: fixed;
   bottom: 42px;
+  top: 0px;
   width: 100%;
   overflow: scroll;
   ::-webkit-scrollbar {
