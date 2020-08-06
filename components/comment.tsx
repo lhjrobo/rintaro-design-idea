@@ -134,6 +134,7 @@ const CommentBoxOtherComments = styled.div`
   overflow: scroll;
   border-top: 1px solid white;
   grid-row: 2/3;
+  font-size: 16px;
 `;
 const CommentBoxOtherComment = styled.div`
   background-color: white;
