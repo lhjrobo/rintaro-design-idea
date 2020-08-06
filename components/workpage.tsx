@@ -159,7 +159,7 @@ const ToolBar = animated(styled.div`
   justify-content: space-between;
   margin-bottom: 51px;
   background-color: #000000;
-  z-index: 20;
+  z-index: 11;
 `);
 const LogoImg = styled.img`
   height: 90px;

@@ -103,6 +103,7 @@ const CommentBox = animated(styled.div`
   position: fixed;
   display: grid;
   grid-template-rows: 50px 1fr 70px;
+  z-index: 12;
 `);
 
 const CommentBoxTitle = styled.div`
