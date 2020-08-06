@@ -9,21 +9,22 @@ const otherComments = ["a", "b", "c", "d", "erer", "a", "b", "c"];
 interface Props {
   openState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
   expandState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  focusState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
 
 const Comment: React.FC<Props> = ({
   openState: [openTrig, setOpenTrig],
   expandState: [expandTrig, setExpandTrig],
+  focusState: [focusTrig, setFocusTrig],
 }) => {
   const [commentContent, setCommentContent] = React.useState(
     "ここにコメント入力"
   );
-  const [focusTrigger, setFocusTrigger] = React.useState(false);
   const [cursorOnTrig, setCursorOnTrig] = React.useState(false);
 
   const { x } = useSpring({ x: openTrig ? 0 : cursorOnTrig ? 230 : 250 });
   const { s } = useSpring({
-    s: expandTrig ? window.innerHeight : focusTrigger ? 120 : 300,
+    s: expandTrig ? window.innerHeight : focusTrig ? 120 : 300,
   });
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -33,15 +34,15 @@ const Comment: React.FC<Props> = ({
   };
   const handleContentFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     e.stopPropagation();
-    if (focusTrigger === false) {
-      setFocusTrigger(true);
+    if (focusTrig === false) {
+      setFocusTrig(true);
       setCommentContent("");
     }
   };
   const handleSubmit = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     if (openTrig === true && commentContent !== "") {
-      setFocusTrigger(false);
+      setFocusTrig(false);
       setCommentContent("ここにコメント入力");
     }
   };
@@ -55,7 +56,7 @@ const Comment: React.FC<Props> = ({
   };
   const handleFormBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
     e.stopPropagation();
-    setFocusTrigger(false);
+    setFocusTrig(false);
   };
   return (
     <CommentBox

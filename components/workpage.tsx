@@ -26,6 +26,9 @@ const WorkPage: React.FC<Props> = ({
   };
   const [openTrig, setOpenTrig] = React.useState(false);
   const [expandTrig, setExpandTrig] = React.useState(false);
+  const [formFocusTrig, setFormFocusTrig] = React.useState(false);
+  const [toolBarOpacity, setToolBarOpacity] = React.useState(1);
+  const [mainPageHeight, setMainPageHeight] = React.useState(114);
   const [nextWork, setNextWork] = React.useState("Heejun");
   React.useEffect(() => {
     let i: number = authorlist.indexOf(author);
@@ -52,6 +55,15 @@ const WorkPage: React.FC<Props> = ({
       target.scrollTo(0, 0);
     }
   }, [open]);
+  React.useEffect(() => {
+    if (formFocusTrig === true) {
+      setToolBarOpacity(0);
+      setMainPageHeight(0);
+    } else {
+      setToolBarOpacity(1);
+      setMainPageHeight(114);
+    }
+  }, [formFocusTrig]);
   return (
     <Body
       style={{
@@ -64,11 +76,11 @@ const WorkPage: React.FC<Props> = ({
         }
       }}
     >
-      <ToolBar>
+      <ToolBar style={{ opacity: toolBarOpacity }}>
         <LogoImg src={logoWhite} />
         <ExitButton onClick={handleClose}>×</ExitButton>
       </ToolBar>
-      <Wrapper id={"Wrapper"}>
+      <Wrapper id={"Wrapper"} style={{ top: mainPageHeight }}>
         <Wrapper2>
           <Overview
             overview={thumbs.get(author).overview}
@@ -101,6 +113,7 @@ const WorkPage: React.FC<Props> = ({
       <Comment
         openState={[openTrig, setOpenTrig]}
         expandState={[expandTrig, setExpandTrig]}
+        focusState={[formFocusTrig, setFormFocusTrig]}
       />
     </Body>
   );
@@ -141,7 +154,6 @@ const ExitButton = styled.div`
 `;
 const Wrapper = styled.div`
   position: fixed;
-  top: 114px;
   bottom: 42px;
   width: 100%;
   overflow: scroll;
