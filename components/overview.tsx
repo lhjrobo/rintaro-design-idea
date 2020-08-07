@@ -73,6 +73,7 @@ const ThumbImg = styled.img`
 const Wrapper2 = styled.div`
   margin: 10% 5% 5% 5%;
   color: white;
+  word-break: keep-all;
 `;
 
 const TitleJP = styled.div`
@@ -88,6 +89,7 @@ const Caption = styled.div`
   line-height: 1.2rem;
   font-kerning: 1.2rem;
   margin-bottom: 10px;
+  word-break: normal;
 `;
 const Credit = styled.div`
   font-size: 0.9rem;

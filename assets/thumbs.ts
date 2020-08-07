@@ -70,7 +70,7 @@ thumbs.set("Kana", {
 thumbs.set("Fumin", {
   src: Fumin,
   author: "Fumin",
-  titleJP: "ヴァイオリン用顎・肩当て",
+  titleJP: "ヴァイオリン用\n顎・肩当て",
   titleEN: "Chin & Shoulder Rest",
   link: "/works/fumin",
   overview: HeejunOverview,

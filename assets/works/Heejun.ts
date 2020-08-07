@@ -13,11 +13,12 @@ const overViewCaptionJP = `チタンは、軽くて、強くて、錆びない�
 const overViewCaptionEN = `This is the project to design aesthetic furniture using titanium. Titanium is a strong, lightweight and non-corrosive material, and it is often considered to be expensive. However, unlike rare earth, titanium ore is not rare on our planet. What makes this material very expensive is actually its cost of processing. Our approach is to design with cheap titanium pipe, which is the leftover =require( the manufacturing process of titanium heat exchanger. By using the algorithmic design method and 3D printed joints, we achieved low-cost, yet sophisticated design.`;
 const overViewCreditJP = `制作：イ ヒジュン\n
 ディレクション：山中俊治\n
-協力：東京大学 生産技術研究所 \n岡部研究室`;
+協力：東京大学 生産技術研究所 岡部研究室`;
 const overViewCreditEN = `Designer: Heejun Lee\n
 Director: Shunji Yamanaka\n
 Collaborator: Okabe Lab,\n
-Institute of Industrial Science, the University of Tokyo`;
+Institute of Industrial Science,\n
+the University of Tokyo`;
 
 const workCaptionTitle1JP = `チタンパイプ`;
 const workCaptionTitle1EN = `Titanium pipe`;

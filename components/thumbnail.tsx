@@ -126,6 +126,8 @@ const TitleWrapper = styled.div`
   display: flex;
   font-size: 1.6rem;
   color: white;
+  word-break: keep-all;
+  white-space: pre-line;
 `;
 const Title = styled.div`
   margin: auto 10% auto 10%;
