@@ -4803,6 +4803,13 @@ react-spring@^8.0.27:
     "@babel/runtime" "^7.3.1"
     prop-types "^15.5.8"
 
+react-touch-events@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-touch-events/-/react-touch-events-2.1.0.tgz#e1c93a328996344cd919537538d67b5fbf2b2ddf"
+  integrity sha1-4ck6MomWNEzZGVN1ONZ7X78rLd8=
+  dependencies:
+    prop-types "^15.5.8"
+
 react-uuid@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-uuid/-/react-uuid-1.0.2.tgz#c77cea91cf38eafb1aaa7910f92621b2ed91b969"

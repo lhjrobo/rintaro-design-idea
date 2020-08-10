@@ -4,6 +4,7 @@ import { useSpring, animated, interpolate } from "react-spring";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 const uuid = require("react-uuid");
+const ReactTouchEvents = require("react-touch-events");
 const otherComments = ["a", "b", "c", "d", "erer", "a", "b", "c"];
 
 interface Props {
@@ -58,6 +59,16 @@ const Comment: React.FC<Props> = ({
     e.stopPropagation();
     setFocusTrig(false);
   };
+  const handleSwipe = (direction: string) => {
+    switch (direction) {
+      case "top":
+        setExpandTrig(true);
+        break;
+      case "bottom":
+        setExpandTrig(false);
+        break;
+    }
+  };
   return (
     <CommentBox
       style={{
@@ -71,15 +82,17 @@ const Comment: React.FC<Props> = ({
       <CommentBoxTitle>
         <span>^</span>
       </CommentBoxTitle>
-      <CommentBoxOtherComments onClick={(e) => e.stopPropagation()}>
-        {otherComments.map((comment) => {
-          return (
-            <CommentBoxOtherComment key={uuid()}>
-              {comment}
-            </CommentBoxOtherComment>
-          );
-        })}
-      </CommentBoxOtherComments>
+      <ReactTouchEvents onSwipe={handleSwipe}>
+        <CommentBoxOtherComments onClick={(e) => e.stopPropagation()}>
+          {otherComments.map((comment) => {
+            return (
+              <CommentBoxOtherComment key={uuid()}>
+                {comment}
+              </CommentBoxOtherComment>
+            );
+          })}
+        </CommentBoxOtherComments>
+      </ReactTouchEvents>
       <CommentBoxFormWrapper onClick={(e) => e.stopPropagation()}>
         <CommentBoxForm
           value={commentContent}
