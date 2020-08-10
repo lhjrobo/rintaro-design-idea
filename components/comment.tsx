@@ -60,7 +60,7 @@ const Comment: React.FC<Props> = ({
     e.stopPropagation();
     setFocusTrig(false);
   };
-  const handleSwipe = useDrag(({ last, vxvy: [vx, vy] }) => {
+  const handleSwipeVertical = useDrag(({ last, vxvy: [vx, vy] }) => {
     if (last) {
       if (Math.abs(vx) < Math.abs(vy)) {
         if (vy < -V_THRESHOLD) setExpandTrig(true);
@@ -84,7 +84,7 @@ const Comment: React.FC<Props> = ({
 
       <CommentBoxOtherComments
         onClick={(e) => e.stopPropagation()}
-        {...handleSwipe()}
+        {...handleSwipeVertical()}
       >
         {otherComments.map((comment) => {
           return (

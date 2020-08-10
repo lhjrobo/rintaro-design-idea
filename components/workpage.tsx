@@ -2,11 +2,13 @@ import React from "react";
 import styled from "@emotion/styled";
 import { backgroundColor, iphoneWidth } from "../assets/rules";
 import { useSpring, animated, interpolate } from "react-spring";
+import { useDrag } from "react-use-gesture";
 import Comment from "./comment";
 import Overview from "./overview";
 import ContentCard from "./contentcard";
 import thumbs from "../assets/thumbs";
 const logoWhite = require("../image/logo_white.png");
+const V_THRESHOLD = 0.7;
 interface Props {
   author: string;
   authorlist: string[];
@@ -53,6 +55,13 @@ const WorkPage: React.FC<Props> = ({
       setPreviousScrollPos(scrollPos);
     }
   };
+  const handleSwipeHorizontal = useDrag(({ last, vxvy: [vx, vy] }) => {
+    if (last) {
+      if (Math.abs(vx) > Math.abs(vy)) {
+        if (vx < -V_THRESHOLD) setOpen(false);
+      }
+    }
+  });
 
   React.useEffect(() => {
     let i: number = authorlist.indexOf(author);
@@ -89,6 +98,7 @@ const WorkPage: React.FC<Props> = ({
           setOpenTrig(false);
         }
       }}
+      {...handleSwipeHorizontal()}
     >
       <ToolBar
         style={{
