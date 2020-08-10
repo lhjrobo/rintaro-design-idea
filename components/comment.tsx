@@ -3,9 +3,10 @@ import styled from "@emotion/styled";
 import { useSpring, animated, interpolate } from "react-spring";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { useDrag } from "react-use-gesture";
 const uuid = require("react-uuid");
-const ReactTouchEvents = require("react-touch-events");
 const otherComments = ["a", "b", "c", "d", "erer", "a", "b", "c"];
+const V_THRESHOLD = 0.5;
 
 interface Props {
   openState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
@@ -59,16 +60,14 @@ const Comment: React.FC<Props> = ({
     e.stopPropagation();
     setFocusTrig(false);
   };
-  const handleSwipe = (direction: string) => {
-    switch (direction) {
-      case "top":
-        setExpandTrig(true);
-        break;
-      case "bottom":
-        setExpandTrig(false);
-        break;
+  const handleSwipe = useDrag(({ last, vxvy: [vx, vy] }) => {
+    if (last) {
+      if (Math.abs(vx) < Math.abs(vy)) {
+        if (vy < -V_THRESHOLD) setExpandTrig(true);
+        else if (vy > V_THRESHOLD) setExpandTrig(false);
+      }
     }
-  };
+  });
   return (
     <CommentBox
       style={{
@@ -82,17 +81,19 @@ const Comment: React.FC<Props> = ({
       <CommentBoxTitle>
         <span>^</span>
       </CommentBoxTitle>
-      <ReactTouchEvents onSwipe={handleSwipe}>
-        <CommentBoxOtherComments onClick={(e) => e.stopPropagation()}>
-          {otherComments.map((comment) => {
-            return (
-              <CommentBoxOtherComment key={uuid()}>
-                {comment}
-              </CommentBoxOtherComment>
-            );
-          })}
-        </CommentBoxOtherComments>
-      </ReactTouchEvents>
+
+      <CommentBoxOtherComments
+        onClick={(e) => e.stopPropagation()}
+        {...handleSwipe()}
+      >
+        {otherComments.map((comment) => {
+          return (
+            <CommentBoxOtherComment key={uuid()}>
+              {comment}
+            </CommentBoxOtherComment>
+          );
+        })}
+      </CommentBoxOtherComments>
       <CommentBoxFormWrapper onClick={(e) => e.stopPropagation()}>
         <CommentBoxForm
           value={commentContent}
