@@ -29,7 +29,7 @@ const WorkPage: React.FC<Props> = ({
   const [scrollPos, setScrollPos] = React.useState(0);
   const [previousScrollPos, setPreviousScrollPos] = React.useState(0);
   const [nextWork, setNextWork] = React.useState("Heejun");
-  const { s } = useSpring({ s: open ? 1 : 0, config: { tension: 350 } });
+  const { x } = useSpring({ x: open ? 0 : -100 });
   const { h } = useSpring({ h: toolBarHideTrig ? 114 : 0 });
 
   const handleClickNext = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -90,7 +90,7 @@ const WorkPage: React.FC<Props> = ({
   return (
     <Body
       style={{
-        transform: interpolate([s], (s) => `scale(${s})`),
+        transform: interpolate([x], (x) => `translate3d(${x}%,0,0)`),
       }}
       onClick={(e) => {
         e.stopPropagation();
